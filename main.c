@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 11:23:12 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/02/12 13:19:12 by mpalacin         ###   ########.fr       */
+/*   Created: 2024/02/12 12:09:38 by mpalacin          #+#    #+#             */
+/*   Updated: 2024/02/12 12:38:47 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include "get_next_line.h"
 
-# include <unistd.h>
-# include <stdlib.h>
+int	main(void)
+{
+	int		fd;
+	int		n;
+	int		i;
+	char	*line;
 
-char	*get_next_line(int fd);
-size_t	ft_strlen(const char *s);
-char	*ft_strchr(const char *s, int c);
-void	*ft_memmove(void *dst, const void *src, size_t len);
-
-#endif
+	n = 1;
+	i = 0;
+	fd = open("test.txt", O_RDONLY);
+	while (i < n)
+	{
+		line = get_next_line(fd);
+		printf("%s\n", line);
+		free(line);
+		i++;
+	}
+}

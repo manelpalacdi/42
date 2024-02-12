@@ -6,86 +6,107 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 12:06:01 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/02/08 12:55:31 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/02/12 13:23:27 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static void _handle_remainder(t_list *node)
+static char	*_handle_remainder(char *buf_line, char *next_line)
 {
-	char	*line;
+	char	*remainder;
+	size_t	i;
 	size_t	len;
 
-	len = 0;
-	while (node 
+	i = 0;
+	len = ft_strlen(buf_line);
+	while (buf_line[i] != '\n' && buf_line[i] != '\0')
+	{
+		i++;
+	}
+	next_line = malloc(i + 2);
+	if (!next_line)
+		return (NULL);
+	next_line[i] = '\n';
+	next_line[i + 1] = '\0';
+	if (!ft_memmove(next_line, buf_line, i))
+		return (NULL);
+	remainder = malloc(len - i);
+	if (!remainder)
+		return (NULL);
+	remainder[len - i] = '\0';
+	if (!ft_memmove(remainder, buf_line + i + 1, len - i))
+		return (NULL);
+	free(buf_line);
+	return (remainder);
 }
 
-static int	_read_to_node(t_list **node, int fd, int *found_nl)
+static char	*_join_buf(char *line, char *buf)
 {
-	read_bytes = read(fd, (*node)->buf, BUFFER_SIZE);
-	if (read_bytes < 0)
-		return (0);
-	if (read_bytes == 0)
+	char	*joined;
+	size_t	i;
+	size_t	line_len;
+	size_t	buf_len;
+
+	i = 0;
+	line_len = ft_strlen(line);
+	buf_len = ft_strlen(buf);
+	joined = malloc(line_len + buf_len + 1);
+	if (!joined)
+		return (NULL);
+	while (i < line_len)
 	{
-		found_nl = 1;
-		(*node)->next = NULL;
+		joined[i] = line[i];
+		i++;
 	}
-	(*node)->buf[read_bytes] = '\0';
-	if (ft_strchr(*node->buf, '\n'))
+	i = 0;
+	while (i < buf_len)
 	{
-		found_nl = 1;
-		(*node)->next = NULL;
+		joined[line_len + i] = buf[i];
+		i++;
 	}
-	else
-		(*node)->next = ft_lstnew(*node);
-		if ((*node)->next)
-			*node = (*node)->next;
+	joined[line_len + buf_len] = '\0';
+	free(line);
+	return (joined);
 }
 
-static int	_read_to_list(t_list *node, int fd)
+static char	*_buf_to_line(int fd)
 {
-	int		found_nl;
+	char	*buf;
+	char	*line;
 	int		read_bytes;
 
-	found_nl = 0;
-	node->buf = malloc(BUFFER_SIZE + 1);
-	if (!node->buf)
-		return (NULL);
-	if (read(fd, *node->buf, 0) < 0)
+	line = NULL;
+	while (!ft_strchr(line, '\n'))
 	{
-		free(node->buf);
-		return (NULL);
+		buf = malloc(BUFFER_SIZE + 1);
+		if (!buf)
+			return (NULL);
+		read_bytes = read(fd, buf, BUFFER_SIZE);
+		if (read_bytes == 0)
+		{
+			free(buf);
+			return (line);
+		}
+		line = _join_buf(line, buf);
+		free(buf);
 	}
-	while (!found_nl)
-	{
-		if(_read_to_node(&node, fd, &found_nl) < 0)
-			return (0);
-	}
-	return (1);
+	return (line);
 }
 
 char	*get_next_line(int fd)
 {
-	static t_list	*node;
-	t_list			*first_node;
-	char			*line;
-	if (fd < 0)
+	static char	*buf_line;
+	char		*next_line;
+
+	next_line = NULL;
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, next_line, 0) < 0)
 		return (NULL);
-	if (!node)
-	{
-		node = ft_lstnew(NULL);
-		if (!node)
-			return (NULL);
-	}
-	first_node = node;
-	if (!_read_to_list(node, fd))
-	{
-		ft_lstclear(&node);
+	buf_line = _buf_to_line(fd);
+	if (!buf_line)
 		return (NULL);
-	}
-	line = _join_node_content(node);
-	_handle_remainder(line);
-	free(line);
-	ft_lstclear(first_node);
+	buf_line = _handle_remainder(buf_line, next_line);
+	if (!buf_line)
+		return (NULL);
+	return (next_line);
 }

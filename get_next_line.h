@@ -15,10 +15,11 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# define BUFFER_SIZE 10
 
 char	*get_next_line(int fd);
 size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);
-void	*ft_memmove(void *dst, const void *src, size_t len);
+void	*ft_strjoinfree(char *line, char *buf);
 
 #endif

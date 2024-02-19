@@ -42,24 +42,31 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+char	*ft_strjoinfree(char *line, char *buf)
 {
+	char	*str;
 	size_t	i;
-	char	*d;
-	char	*s;
+	size_t	line_len;
+	size_t	buf_len;
 
-	d = (char *)dst;
-	s = (char *)src;
 	i = 0;
-	if (!dst && !src)
+	line_len = ft_strlen(line_len);
+	buf_len = ft_strlen(buf_len);
+	str = malloc(line_len + buf_len + 1);
+	if (!str)
 		return (NULL);
-	while (i < len)
+	while (i < line_len)
 	{
-		if (s < d)
-			d[len - i - 1] = s[len - i - 1];
-		else
-			d[i] = s[i];
+		str[i] = line[i];
 		i++;
 	}
-	return (dst);
+	i = 0;
+	while (i < buf_len)
+	{
+		str[line_len + i] = buf[i];
+		i++;
+	}
+	str[line_len + i] = '\0';
+	free(line);
+	return (str);
 }

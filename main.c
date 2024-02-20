@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 12:09:38 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/02/12 12:38:47 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/02/20 12:49:04 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ int	main(void)
 	int		i;
 	char	*line;
 
-	n = 1;
+	n = 8;
 	i = 0;
-	fd = open("test.txt", O_RDONLY);
+	fd = open("test", O_RDONLY);
 	while (i < n)
 	{
 		line = get_next_line(fd);
-		printf("%s\n", line);
+		printf("%s", line);
 		i++;
 	}
 }

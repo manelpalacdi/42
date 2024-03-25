@@ -2,10 +2,12 @@
 
 void	move_to(t_game *data, int x, int y)
 {
+	data.map.matrix[data.player.x][data.player.y] = '0';
 	data.player.x = x;
 	data.player.y = y;
 	do_position_action(data, data.map.matrix[x][y]);
 	data.map.matrix[x][y] = 'P';
+	update_screen(data);	
 }
 
 void	do_position_action(t_game *data, char c)

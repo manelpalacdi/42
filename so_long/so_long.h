@@ -2,11 +2,13 @@
 # define SO_LONG_H
 
 # include <stdlib.h>
+# include <stdio.h>
 # include <fcntl.h>
 # include <unistd.h>
 # include <X11/Xlib.h>
 # include <X11/keysym.h>
 # include "minilibx-linux/mlx.h"
+# include "libft/libft.h"
 # define PIXELS_PER_UNIT 16
 typedef struct s_sprite
 {
@@ -34,7 +36,7 @@ typedef struct s_player
 	int	x;
 	int	y;
 	int	collected;
-}
+}	t_player;
 typedef struct s_game
 {
 	void	*mlx;
@@ -43,12 +45,13 @@ typedef struct s_game
 	t_map	map;
 	t_player player;
 }	t_game;
-int	handle_input(int keysym, t_mlx_data *data);
+int	handle_input(int keysym, t_game *data);
 void	check_args(int argc, char **argv);
 void	init_map(char *name, t_game *data);
 void	init_graphics();
+void	update_screen(t_game *data);
 void	move_to(t_game *data, int x, int y);
-void	mlx_free_exit_all(t_game *data, int error);
+void	mlx_free_exit_all(t_game *data);
 void	free_matrix(void **matrix, int max_row);
 void	ft_free(void *var);
 #endif

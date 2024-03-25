@@ -1,9 +1,7 @@
 #include "so_long.h"
 
-void	mlx_free_exit_all(t_game *data, int error)
+void	mlx_free_exit_all(t_game *data)
 {
-	if (error)
-		write(2, "Error\n", 6);
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
@@ -21,7 +19,7 @@ void	free_matrix(void **matrix, int max_row)
 		i++;
 	}
 	ft_free(matrix);
-
+}
 
 void	ft_free(void *var)
 {

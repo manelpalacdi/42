@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	if (!sorted_stack(a))
 	{
 		if (get_stack_len(a) == 2)
-			sa(&a, false);
+			sa(&a);
 		else if (get_stack_len(a) == 3)
 			tiny_sort(&a);
 		else

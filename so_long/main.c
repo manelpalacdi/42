@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 	if (!data.mlx)
 	{
 		free_matrix(data.map.matrix);
-		exit(1);
+		return (1);
 	}
 	data.win = mlx_new_window(data.mlx,
 			data.map.width * PIXELS_PER_UNIT,
@@ -36,8 +36,6 @@ int	main(int argc, char **argv)
 	start_movement(&data);
 	update_screen(&data);
 	mlx_key_hook(data.win, handle_input, &data);
-	mlx_hook(data.win, 17, 0L, close_window, &data);
+	mlx_hook(data.win, 17, 0, close_window, &data);
 	mlx_loop(data.mlx);
-	free_matrix(data.map.matrix);
-	mlx_free_exit_all(&data);
 }

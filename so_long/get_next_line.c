@@ -23,11 +23,14 @@ static char	*_get_remainder(char *buf_line)
 	while (buf_line[i] && buf_line[i] != '\n')
 		i++;
 	if (i == len)
+		return (gnl_free(buf_line), NULL);
+	remainder = gnl_substr(buf_line, i + 1, len - i - 1);
+	if (!remainder[0])
 	{
+		gnl_free(remainder);
 		gnl_free(buf_line);
 		return (NULL);
 	}
-	remainder = gnl_substr(buf_line, i + 1, len - i - 1);
 	gnl_free(buf_line);
 	return (remainder);
 }
@@ -35,9 +38,7 @@ static char	*_get_remainder(char *buf_line)
 static char	*_malloc_next_line(char *buf_line, size_t len)
 {
 	char	*next_line;
-	size_t	i;
 
-	i = 0;
 	if (buf_line[len] == '\0')
 	{
 		next_line = malloc(len + 1);

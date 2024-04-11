@@ -16,6 +16,7 @@ void	mlx_free_exit_all(t_game *data)
 {
 	if (data->win)
 		mlx_destroy_window(data->mlx, data->win);
+	mlx_destroy_display(data->mlx);
 	ft_free(data->mlx);
 	exit(1);
 }

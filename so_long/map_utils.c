@@ -39,7 +39,10 @@ static void	init_matrix_rows(int fd, t_game *data)
 	while (i < data->map.height)
 	{
 		line = get_next_line(fd);
-		data->map.matrix[i] = ft_substr(line, 0, (int)ft_strlen(line) - 1);
+		if (ft_strchr(line, '\n'))
+			data->map.matrix[i] = ft_substr(line, 0, (int)ft_strlen(line) - 1);
+		else
+			data->map.matrix[i] = ft_substr(line, 0, (int)ft_strlen(line));
 		if (!data->map.matrix[i])
 		{
 			close(fd);
@@ -54,10 +57,8 @@ static void	init_matrix_rows(int fd, t_game *data)
 
 void	init_matrix(char *path, t_game *data)
 {
-	int	i;
 	int	fd;
 
-	i = 0;
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 	{

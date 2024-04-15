@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 12:10:23 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/03/14 13:46:59 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/04/15 12:27:19 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,5 @@ void    sb(t_stack **b);
 void    ss(t_stack **a, t_stack **b);
 void    pa(t_stack **a);
 void    pb(t_stack **b);
+void	tiny_sort(t_stack **a);
 #endif

@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:29:46 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/15 12:25:56 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/04/16 12:36:56 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,39 @@ t_stack	*get_last_node(t_stack *stk)
 	while (stk->next)
 		stk = stk->next;
 	return (stk);
+}
+
+t_stack	*get_smallest_node(t_stack *stk)
+{
+	long	smallest;
+	t_stack	*smallest_node;
+
+	if (!stk)
+		return ;
+	smallest = LONG_MAX;
+	while (stk)
+	{
+		if (stk->val < smallest)
+		{
+			smallest = stk->val;
+			smallest_node = stk;
+		}
+		stk = stk->next;
+	}
+	return (smallest_node);
+}
+
+t_stack	*get_cheapest_node(t_stack *stk)
+{
+	if (!stk)
+		return ;
+	while (stk)
+	{
+		if (stk->cheapest)
+			return (stk);
+		stk = stk->next;
+	}
+	return (NULL);
 }
 
 int	get_stack_len(t_stack *stk)

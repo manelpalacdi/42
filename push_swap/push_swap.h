@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 12:10:23 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/15 12:27:19 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/04/16 11:46:38 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ typedef struct s_stack
 	int	push_cost;
 	bool	above_median;
 	bool	cheapest;
-	struct	s_list	target_node;
-	struct	s_list	*previous;
-	struct	s_list	*next;
+	struct	s_stack	target_node;
+	struct	s_stack	*previous;
+	struct	s_stack	*next;
 }	t_stack;
 char	**ft_split(char const *str, char c);
 void	init_stack(t_stack **stk, char **argv, bool argc_equals_2);
@@ -39,6 +39,8 @@ void	free_stack(t_stack **stk);
 void	free_matrix(char **matrix);
 void	append_node(t_stack **stk, int val);
 t_stack	get_last_node(t_stack *stk);
+t_stack	get_smallest_node(t_stack *stk);
+t_stack	get_cheapest_node(t_stack *stk);
 bool	sorted_stack(t_stack *stk);
 int	get_stack_len(t_stack *stk);
 void	ra(t_stack **a);
@@ -50,7 +52,12 @@ void    rrr(t_stack **a, t_stack **b);
 void    sa(t_stack **a);
 void    sb(t_stack **b);
 void    ss(t_stack **a, t_stack **b);
-void    pa(t_stack **a);
-void    pb(t_stack **b);
+void    pa(t_stack **a, t_stack **b);
+void    pb(t_stack **b, t_stack **a);
 void	tiny_sort(t_stack **a);
+void	push_swap(t_stack **a, t_stack **b);
+void	init_nodes(t_stack *a, t_stack *b);
+void	set_current_position(t_stack *a);
+void	handle_five(t_stack **a, t_stack **b);
+void	finish_rotation(t_stack **stk, t_stack *top_node, char stk_name);
 #endif

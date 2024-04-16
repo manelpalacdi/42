@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:29:46 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/16 12:36:56 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:02:02 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	append_node(t_stack **stk, int val)
 	}
 	else
 	{
-		*last_node = get_last_node(t_stack *stk);
+		last_node = get_last_node(*stk);
 		last_node->next = new_node;
 		new_node->previous = last_node;
 	}
@@ -52,7 +52,7 @@ t_stack	*get_smallest_node(t_stack *stk)
 	t_stack	*smallest_node;
 
 	if (!stk)
-		return ;
+		return (NULL);
 	smallest = LONG_MAX;
 	while (stk)
 	{
@@ -69,7 +69,7 @@ t_stack	*get_smallest_node(t_stack *stk)
 t_stack	*get_cheapest_node(t_stack *stk)
 {
 	if (!stk)
-		return ;
+		return (NULL);
 	while (stk)
 	{
 		if (stk->cheapest)

@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 12:38:57 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/16 12:44:00 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:11:03 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	push_swap(t_stack **a, t_stack **b)
 	t_stack	*smallest;
 	int		len_a;
 
-	len_a = stack_len(*a);
+	len_a = get_stack_len(*a);
 	if (len_a == 5)
 		handle_five(a, b);
 	else

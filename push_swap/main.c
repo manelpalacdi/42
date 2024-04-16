@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:27:28 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/15 12:21:03 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/04/16 12:57:05 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	main(int argc, char **argv)
 	t_stack	*a;
 	t_stack	*b;
 
-	i = 0;
 	if (1 == argc || (!argv[1][0] && argc == 2))
 		return (1);
 	else if (argc == 2)

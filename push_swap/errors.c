@@ -6,9 +6,11 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:49:08 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/03/14 11:29:10 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/04/16 12:51:37 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "push_swap.h"
 
 int	syntax_error(char *str)
 {
@@ -38,7 +40,7 @@ int	repetition_error(t_stack *stk, int nbr)
 	{
 		if (stk->val == nbr)
 			return (1);
-		a = a->next;
+		stk = stk->next;
 	}
 	return (0);
 }

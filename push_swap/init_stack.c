@@ -6,19 +6,11 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:06:09 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/15 12:22:14 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/04/16 12:56:53 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static int	_isspace(char c)
-{
-	if (c == '\t' || c == '\n' || c == '\v'
-		|| c == '\f' || c == '\r' || c == ' ')
-		return (1);
-	return (0);
-}
 
 static long	_atol(const char *str)
 {

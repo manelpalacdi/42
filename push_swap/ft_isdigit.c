@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/12 12:28:25 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/16 12:55:11 by mpalacin         ###   ########.fr       */
+/*   Created: 2024/04/16 12:49:26 by mpalacin          #+#    #+#             */
+/*   Updated: 2024/04/16 13:08:54 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_isdigit(int c)
 {
-	size_t	len;
-
-	len = 0;
-	while (s[len] != '\0')
-		len++;
-	return (len);
+	if (c > '0' && c < '9')
+		return (1);
+	else
+		return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:31:46 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/03/04 11:35:45 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:09:06 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-int	ft_isspace(char c)
+int	ft_isspace(int c)
 {
 	if (c == '\t' || c == '\n' || c == '\v'
 		|| c == '\f' || c == '\r' || c == ' ')

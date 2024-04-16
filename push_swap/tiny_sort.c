@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 12:20:34 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/15 12:28:21 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:03:34 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	tiny_sort(t_stack **a)
 {
 	t_stack	*max_node;
 
-	max_node = find_max_node(*a);
+	max_node = get_max_node(*a);
 	if (*a == max_node)
 		ra(a);
 	else if((*a)->next == max_node)

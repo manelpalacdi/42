@@ -6,9 +6,11 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:27:21 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/03/12 12:29:06 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/04/16 12:56:08 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "push_swap.h"
 
 int	ft_countwords(char const *s, char c)
 {

@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-static void	swap(t_stack **head)
+static void	_swap(t_stack **head)
 {
 	int	len;
 
@@ -8,7 +8,7 @@ static void	swap(t_stack **head)
 	if (!(*head) || !head || len == 1)
 		return ;
 	*head = (*head)->next;
-	(*head)->previous->prev = *head;
+	(*head)->previous->previous = *head;
 	(*head)->previous->next = (*head)->next;
 	if ((*head)->next)
 		(*head)->next->previous = (*head)->previous;
@@ -18,19 +18,19 @@ static void	swap(t_stack **head)
 
 void	sa(t_stack **a)
 {
-	swap(a);
+	_swap(a);
 	write(1, "sa\n", 3);
 }
 
 void	sb(t_stack **b)
 {
-	swap(b);
+	_swap(b);
 	write(1, "sb\n", 3);
 }
 
 void	ss(t_stack **a, t_stack **b)
 {
-	swap(a);
-	swap(b);
+	_swap(a);
+	_swap(b);
 	write(1, "ss\n", 3);
 }

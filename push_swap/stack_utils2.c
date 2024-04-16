@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 12:37:03 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/16 12:45:15 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:07:54 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,26 @@ bool	sorted_stack(t_stack *stk)
 		stk = stk->next;
 	}
 	return (true);
+}
+
+t_stack	*get_max_node(t_stack *stk)
+{
+	int		max;
+	t_stack	*max_node;
+
+	max = INT_MIN;
+	if (!stk)
+		return (NULL);
+	while (stk)
+	{
+		if (stk->val > max)
+		{
+			max = stk->val;
+			max_node = stk;
+		}
+		stk = stk->next;
+	}
+	return (max_node);
 }
 
 void	handle_five(t_stack **a, t_stack **b)

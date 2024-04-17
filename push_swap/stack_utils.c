@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:29:46 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/16 13:02:02 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/04/17 12:15:38 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,17 +90,4 @@ int	get_stack_len(t_stack *stk)
 		len++;
 	}
 	return (len);
-}
-
-bool	sorted_stack(t_stack *stk)
-{
-	if (!stk)
-		return (true);
-	while (stk->next)
-	{
-		if (stk->next->val < stk->val)
-			return (false);
-		stk = stk->next;
-	}
-	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 11:27:28 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/17 10:55:55 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/04/17 12:54:31 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	main(int argc, char **argv)
 		return (1);
 	else if (argc == 2)
 		argv = ft_split(argv[1], ' ');
+	else
+		argv++;
 	init_stack(&a, argv, argc == 2);
 	if (!sorted_stack(a))
 	{

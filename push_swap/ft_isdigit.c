@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 12:49:26 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/16 13:08:54 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/04/17 12:49:33 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_isdigit(int c)
 {
-	if (c > '0' && c < '9')
+	if (c >= '0' && c <= '9')
 		return (1);
 	else
 		return (0);

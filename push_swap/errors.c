@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:49:08 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/16 12:51:37 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/04/17 12:50:42 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@ int	syntax_error(char *str)
 	int	i;
 
 	i = 0;
-	if (!(str[0] == '+' || str[0] == '-'
-			|| (str[0] >= '0' && str[0] <= '9')))
-		return (1);
+	if (str[0] != '+' && str[0] != '-' && !ft_isdigit(str[0]))
+			return (1);
 	if ((str[0] == '+' || str[0] == '-')
 			&& !ft_isdigit(str[1]))
 		return (1);
+	if (str[0] == '+' || str[0] == '-')
+		i++;
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))

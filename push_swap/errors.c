@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:49:08 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/17 12:50:42 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/04/17 12:57:14 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	syntax_error(char *str)
 
 	i = 0;
 	if (str[0] != '+' && str[0] != '-' && !ft_isdigit(str[0]))
-			return (1);
+		return (1);
 	if ((str[0] == '+' || str[0] == '-')
-			&& !ft_isdigit(str[1]))
+		&& !ft_isdigit(str[1]))
 		return (1);
 	if (str[0] == '+' || str[0] == '-')
 		i++;
@@ -46,7 +46,7 @@ int	repetition_error(t_stack *stk, int nbr)
 	return (0);
 }
 
-void error_free(t_stack **stk, char **argv, bool argc_equals_2)
+void	error_free(t_stack **stk, char **argv, bool argc_equals_2)
 {
 	free_stack(stk);
 	if (argc_equals_2)
@@ -55,15 +55,15 @@ void error_free(t_stack **stk, char **argv, bool argc_equals_2)
 	exit(1);
 }
 
-void free_stack(t_stack **stk)
+void	free_stack(t_stack **stk)
 {
-	t_stack *aux;
-	t_stack *current;
+	t_stack	*aux;
+	t_stack	*current;
 
 	if (!stk)
 		return ;
 	current = *stk;
-	while(current)
+	while (current)
 	{
 		aux = current->next;
 		free(current);
@@ -72,7 +72,7 @@ void free_stack(t_stack **stk)
 	*stk = NULL;
 }
 
-void free_matrix(char **matrix)
+void	free_matrix(char **matrix)
 {
 	int	i;
 

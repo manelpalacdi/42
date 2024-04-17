@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:06:09 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/17 12:54:38 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/04/17 12:57:36 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static long	_atol(const char *str)
 	}
 	return (nb * neg);
 }
+
 void	init_stack(t_stack **a, char **argv, bool argc_equals_2)
 {
 	long	nbr;

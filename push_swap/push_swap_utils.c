@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 10:59:44 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/17 12:15:27 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/04/17 13:02:18 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	set_current_position(t_stack *a)
 
 	i = 0;
 	center = get_stack_len(a) / 2;
-	while(a)
+	while (a)
 	{
 		a->pos = i;
 		if (i >= center)
@@ -84,8 +84,7 @@ void	set_target_node(t_stack *a, t_stack *b)
 		while (current_a)
 		{
 			if (current_a->val > b->val
-					&& current_a->val < best)
-
+				&& current_a->val < best)
 			{
 				best = current_a->val;
 				target_node = current_a;

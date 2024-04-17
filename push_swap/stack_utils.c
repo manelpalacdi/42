@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:29:46 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/17 12:15:38 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/04/17 13:04:02 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	append_node(t_stack **stk, int val)
 {
 	t_stack	*new_node;
 	t_stack	*last_node;
-	
+
 	if (!stk)
 		return ;
 	new_node = malloc(sizeof(t_stack));

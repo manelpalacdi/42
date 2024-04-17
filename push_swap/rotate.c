@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/17 13:02:33 by mpalacin          #+#    #+#             */
+/*   Updated: 2024/04/17 13:03:01 by mpalacin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static void	_rotate(t_stack **stack)
 {
 	t_stack	*last_node;
-	int	len;
+	int		len;
 
 	len = get_stack_len(*stack);
 	if (!stack || !(*stack) || len == 1)

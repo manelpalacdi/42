@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:33:29 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/04 11:49:29 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/04/15 11:10:16 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	mlx_free_exit_all(t_game *data)
 {
 	if (data->win)
 		mlx_destroy_window(data->mlx, data->win);
-	mlx_destroy_display(data->mlx);
-	ft_free(data->mlx);
 	exit(1);
 }
 

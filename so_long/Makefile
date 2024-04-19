@@ -6,19 +6,19 @@
 #    By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/03 11:34:36 by mpalacin          #+#    #+#              #
-#    Updated: 2024/04/04 12:42:16 by mpalacin         ###   ########.fr        #
+#    Updated: 2024/04/15 11:38:47 by mpalacin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-SOURCES = main.c graphics.c map_utils.c error_utils.c input.c map.c check_matrix.c movement.c get_next_line.c get_next_line_utils.c
+SOURCES = main.c graphics.c map_utils.c error_utils.c input.c map.c check_matrix.c flood_algorithm.c movement.c get_next_line.c get_next_line_utils.c
 
 OBJECTS =  $(SOURCES:.c=.o)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
 MLX_PATH = mlx/
 
@@ -59,4 +59,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re subsystems

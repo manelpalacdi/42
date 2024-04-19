@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:23:11 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/04 13:25:12 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/04/15 11:26:05 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int	check_closed_map(t_game *data)
 			}
 			else
 			{
-				if (data->map.matrix[i][0] != '1' || data->map.matrix[i][data->map.width - 1] != '1')
+				if (data->map.matrix[i][0] != '1'
+					|| data->map.matrix[i][data->map.width - 1] != '1')
 					return (1);
 			}
 			j++;
@@ -104,7 +105,9 @@ int	check_valid_char(t_game *data)
 
 void	check_matrix(t_game *data)
 {
-	if (check_rectangular_map(data) || check_closed_map(data) || check_value_pec(data) || check_valid_char(data) || check_valid_route(data))
+	if (check_rectangular_map(data) || check_closed_map(data)
+		|| check_value_pec(data) || check_valid_char(data)
+		|| check_valid_route(data))
 	{
 		free_matrix(data->map.matrix);
 		perror("Error\nMap has incorrect format");

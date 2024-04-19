@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:34:43 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/04 12:41:10 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/04/15 11:46:48 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 typedef struct s_map
 {
 	char	**matrix;
+	char	**visited;
 	int		width;
 	int		height;
 	int		collectables;
@@ -48,12 +49,11 @@ int		handle_input(int keysym, t_game *data);
 int		close_window(t_game *data);
 char	*get_next_line(int fd);
 void	check_args(int argc, char **argv);
+int		check_valid_route(t_game *data);
 void	check_matrix(t_game *data);
 void	init_map(char *path, t_game *data);
 void	init_matrix(char *path, t_game *data);
 int		str_count_char(char *line, char c);
-int		check_valid_route(t_game *data);
-void	flood_algorithm(t_game *data, int x, int y, char **visited, int *ccount);
 void	update_screen(t_game *data);
 void	move_to(t_game *data, int x, int y);
 void	stop_movement(t_game *data);

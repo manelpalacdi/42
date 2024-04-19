@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 10:34:19 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/04 12:42:56 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/04/15 11:27:38 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,3 @@ void	init_map(char *path, t_game *data)
 	init_player_pos(data);
 	check_matrix(data);
 }
-

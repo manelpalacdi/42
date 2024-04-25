@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_utils.c                                      :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/24 11:46:07 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/25 10:57:15 by mpalacin         ###   ########.fr       */
+/*   Created: 2024/01/09 13:33:15 by mpalacin          #+#    #+#             */
+/*   Updated: 2024/01/18 16:37:26 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
+/*#include <ctype.h>*/
 
-void	exit_error(const char *error)
+int	ft_isprint(int c)
 {
-	size_t	len;
-
-	len = ft_strlen(error);
-	write(1, error, len);
-	write(1, "\n", 1);
-	exit(1);
+	if (c >= 32 && c <= 126)
+		return (1);
+	else
+		return (0);
 }
+/*
+int	main(int argc, char **argv)
+{
+	printf("%d\n", ft_isprint(argv[1][0]));
+	printf("%d\n", isprint(argv[1][0]));
+}*/

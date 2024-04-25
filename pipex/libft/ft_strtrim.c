@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_utils.c                                      :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/24 11:46:07 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/25 10:57:15 by mpalacin         ###   ########.fr       */
+/*   Created: 2024/01/15 15:32:58 by mpalacin          #+#    #+#             */
+/*   Updated: 2024/01/24 12:36:39 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	exit_error(const char *error)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	len;
+	char			*strtrim;
+	unsigned int	i;
+	size_t			len;
 
-	len = ft_strlen(error);
-	write(1, error, len);
-	write(1, "\n", 1);
-	exit(1);
+	i = 0;
+	len = ft_strlen(s1);
+	while (s1[i] != '\0' && ft_strchr(set, s1[i]))
+		i++;
+	while (len > i && ft_strchr(set, s1[len - 1]))
+		len--;
+	strtrim = ft_substr(s1, i, len - i);
+	if (!strtrim)
+		return (NULL);
+	return (strtrim);
 }

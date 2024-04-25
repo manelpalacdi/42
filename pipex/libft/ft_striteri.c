@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_utils.c                                      :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/24 11:46:07 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/25 10:57:15 by mpalacin         ###   ########.fr       */
+/*   Created: 2024/01/16 13:52:06 by mpalacin          #+#    #+#             */
+/*   Updated: 2024/01/17 10:48:19 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	exit_error(const char *error)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	size_t	len;
+	unsigned int	i;
 
-	len = ft_strlen(error);
-	write(1, error, len);
-	write(1, "\n", 1);
-	exit(1);
+	i = 0;
+	while (i < ft_strlen(s))
+	{
+		(*f)(i, &s[i]);
+		i++;
+	}
+	return ;
 }

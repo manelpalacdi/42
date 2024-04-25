@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_utils.c                                      :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/24 11:46:07 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/25 10:57:15 by mpalacin         ###   ########.fr       */
+/*   Created: 2024/01/10 18:40:22 by mpalacin          #+#    #+#             */
+/*   Updated: 2024/02/07 13:28:05 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	exit_error(const char *error)
+char	*ft_strchr(const char *s, int c)
 {
-	size_t	len;
+	size_t	i;
 
-	len = ft_strlen(error);
-	write(1, error, len);
-	write(1, "\n", 1);
-	exit(1);
+	i = 0;
+	while (i < ft_strlen(s) + 1)
+	{
+		if (s[i] == (char)c)
+			return ((char *)(s + i));
+		i++;
+	}
+	return (NULL);
 }

@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_utils.c                                      :+:      :+:    :+:   */
+/*   strlcpy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/24 11:46:07 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/25 10:57:15 by mpalacin         ###   ########.fr       */
+/*   Created: 2024/01/10 16:52:46 by mpalacin          #+#    #+#             */
+/*   Updated: 2024/02/12 11:23:00 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	exit_error(const char *error)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	size_t	len;
+	size_t	i;
 
-	len = ft_strlen(error);
-	write(1, error, len);
-	write(1, "\n", 1);
-	exit(1);
+	i = 0;
+	if (dstsize > 0)
+	{
+		while (i < dstsize - 1 && src[i] != '\0')
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
+	}
+	return (ft_strlen(src));
 }

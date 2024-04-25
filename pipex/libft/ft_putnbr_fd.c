@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_utils.c                                      :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/24 11:46:07 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/25 10:57:15 by mpalacin         ###   ########.fr       */
+/*   Created: 2024/01/17 11:52:15 by mpalacin          #+#    #+#             */
+/*   Updated: 2024/01/24 13:17:48 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	exit_error(const char *error)
+void	ft_putnbr_fd(int n, int fd)
 {
-	size_t	len;
-
-	len = ft_strlen(error);
-	write(1, error, len);
-	write(1, "\n", 1);
-	exit(1);
+	if (n == -2147483648)
+	{
+		ft_putstr_fd("-2147483648", fd);
+		return ;
+	}
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		n *= -1;
+	}
+	if (n > 9)
+	{
+		ft_putnbr_fd(n / 10, fd);
+	}
+	ft_putchar_fd(n % 10 + 48, fd);
+	return ;
 }

@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_utils.c                                      :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/24 11:46:07 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/25 10:57:15 by mpalacin         ###   ########.fr       */
+/*   Created: 2024/01/10 15:26:06 by mpalacin          #+#    #+#             */
+/*   Updated: 2024/01/24 12:22:44 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
+/*#include <string.h>*/
 
-void	exit_error(const char *error)
+size_t	ft_strlen(const char *s)
 {
 	size_t	len;
 
-	len = ft_strlen(error);
-	write(1, error, len);
-	write(1, "\n", 1);
-	exit(1);
+	len = 0;
+	while (s[len] != '\0')
+		len++;
+	return (len);
 }
+/*
+int	main(int argc, char **argv)
+{
+	printf("%lu\n", ft_strlen(argv[1]));
+	printf("%lu\n", strlen(argv[1]));
+}*/

@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_utils.c                                      :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/24 11:46:07 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/25 10:57:15 by mpalacin         ###   ########.fr       */
+/*   Created: 2024/01/25 10:37:26 by mpalacin          #+#    #+#             */
+/*   Updated: 2024/01/26 10:37:58 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	exit_error(const char *error)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	size_t	len;
+	t_list	*auxlst;
 
-	len = ft_strlen(error);
-	write(1, error, len);
-	write(1, "\n", 1);
-	exit(1);
+	auxlst = *lst;
+	while (*lst != NULL)
+	{
+		*lst = (*lst)->next;
+		ft_lstdelone(auxlst, del);
+		auxlst = *lst;
+	}
+	lst = NULL;
 }

@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_utils.c                                      :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/24 11:46:07 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/25 10:57:15 by mpalacin         ###   ########.fr       */
+/*   Created: 2024/01/16 13:43:26 by mpalacin          #+#    #+#             */
+/*   Updated: 2024/01/18 17:00:49 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	exit_error(const char *error)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t	len;
+	char			*strmapi;
+	unsigned int	i;
 
-	len = ft_strlen(error);
-	write(1, error, len);
-	write(1, "\n", 1);
-	exit(1);
+	strmapi = malloc((ft_strlen(s) + 1) * sizeof(char));
+	if (!strmapi)
+		return (NULL);
+	i = 0;
+	while (i < ft_strlen(s))
+	{
+		strmapi[i] = (*f)(i, s[i]);
+		i++;
+	}
+	strmapi[i] = '\0';
+	return (strmapi);
 }

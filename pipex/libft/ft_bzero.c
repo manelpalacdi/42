@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_utils.c                                      :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/24 11:46:07 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/25 10:57:15 by mpalacin         ###   ########.fr       */
+/*   Created: 2024/01/10 15:47:13 by mpalacin          #+#    #+#             */
+/*   Updated: 2024/01/15 16:36:07 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
+/*#include <string.h>*/
 
-void	exit_error(const char *error)
+void	ft_bzero(void *s, size_t n)
 {
-	size_t	len;
+	size_t	count;
 
-	len = ft_strlen(error);
-	write(1, error, len);
-	write(1, "\n", 1);
-	exit(1);
+	count = 0;
+	if (n == 0)
+		return ;
+	while (count < n)
+	{
+		((char *)s)[count] = 0;
+		count++;
+	}
+	return ;
 }
+/*
+int	main(int argc, char **argv)
+{
+	ft_bzero(argv[1], 4);
+	printf("%s\n", argv[1]);
+}*/

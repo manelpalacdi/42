@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 10:59:44 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/17 13:02:18 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/04/22 12:18:22 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	set_current_position(t_stack *a)
 	while (a)
 	{
 		a->pos = i;
-		if (i >= center)
+		if (i <= center)
 			a->above_median = true;
 		else
 			a->above_median = false;

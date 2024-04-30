@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   script.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/24 11:56:13 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/30 11:52:34 by mpalacin         ###   ########.fr       */
+/*   Created: 2024/04/30 10:07:27 by mpalacin          #+#    #+#             */
+/*   Updated: 2024/04/30 12:47:29 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "pipex.h"
 
-# include <sys/types.h>
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
-# define SHNAME "script.sh"
+void	read_input(const char *in, int out)
+{
+	int	fd;
 
-int		fork_execute(int in, int out, const char *cmd);
-void	exit_error(const char *error);
-size_t	ft_strlen(const char *s);
-void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putendl_fd(char *s, int fd);
-
-#endif
+	if (access(in, R_OK) < 0)
+	{
+		ft_printf("permission denied: %s\n", in);
+		exit(1);
+	}
+	fd = open(in, O_RDONLY);
+	if (fd < 0)
+	{
+		ft_printf("no such file or directory: %s\n", in);
+		exit(1);
+	}
+	read_bytes(
+	close(fd);
+}

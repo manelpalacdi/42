@@ -1,29 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/24 11:56:13 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/30 11:52:34 by mpalacin         ###   ########.fr       */
+/*   Created: 2024/04/30 11:47:32 by mpalacin          #+#    #+#             */
+/*   Updated: 2024/04/30 12:47:33 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "pipex.h"
 
-# include <sys/types.h>
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
-# define SHNAME "script.sh"
+int	fork_execute(int in, int out, const char *cmd)
+{
+	pid_t	pid;
 
-int		fork_execute(int in, int out, const char *cmd);
-void	exit_error(const char *error);
-size_t	ft_strlen(const char *s);
-void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putendl_fd(char *s, int fd);
-
-#endif
+	pid = fork();
+	if (pid < 0)
+		exit_error("fork error");
+	if (pid == 0)
+	{
+		if (in != 0)
+		{
+			dup2(in,  0);
+			close(in);
+		}
+		if (out != 1)
+		{
+			dup2(out, 1);
+			close(out);
+		}
+		return (execve(cmd, cmd, NULL));
+	}
+	else
+	{
+		return (pid);
+	}
+}

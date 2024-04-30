@@ -6,13 +6,13 @@
 #    By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/25 10:47:06 by mpalacin          #+#    #+#              #
-#    Updated: 2024/04/25 10:49:38 by mpalacin         ###   ########.fr        #
+#    Updated: 2024/04/30 10:59:18 by mpalacin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 
-SOURCES = main.c error_utils.c
+SOURCES = main.c error_utils.c input.c
 
 OBJECTS =  $(SOURCES:.c=.o)
 

@@ -25,13 +25,18 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	i = 1;
+    in = 0;
 	while (i < argc)
 	{
 		if (pipe(p) < 0)
 			exit_error ("pipe error");
 		if (fork_execute(in, p[1], argv[i]) < 0)
-			exit_error("fork error");
+			exit_error("execve error");
 		close(p[1]);
+        if (i == 0)
+            close(p[0]);
+        if (in != 0)
+            close(in);
 		in = p[0];
 		i++;
 	}

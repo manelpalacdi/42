@@ -33,8 +33,5 @@ int	fork_execute(int in, int out, const char *cmd)
 		}
 		return (execve(cmd, cmd, NULL));
 	}
-	else
-	{
-		return (pid);
-	}
+	return (pid);
 }

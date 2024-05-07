@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   process.c                                          :+:      :+:    :+:   */
+/*   output.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 11:47:32 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/05/07 12:43:14 by mpalacin         ###   ########.fr       */
+/*   Created: 2024/05/07 12:20:49 by mpalacin          #+#    #+#             */
+/*   Updated: 2024/05/07 12:51:58 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	fork_execute(int in, int out, const char *cmd)
+char	*get_output(const char *arg)
 {
-	pid_t	pid;
+	char	*str;
 
-	pid = fork();
-	if (pid < 0)
-		exit_error("fork error");
-	if (pid == 0)
+	str = ft_strjoin(arg, " >");
+	if (!str)
+		exit_error("memory problems");
+	return (str);
+}
+
+void	check_output_file(const char *out)
+{
+	if (access(out, F_OK) < 0)
 	{
-		if (in != 0)
-		{
-			dup2(in,  0);
-			close(in);
-		}
-		if (out != 1)
-		{
-			dup2(out, 1);
-			close(out);
-		}
-		return (execve(cmd, (char * const *)cmd, NULL));
+		ft_printf("no such file or directory: %s\n", out);
+		exit(1);
 	}
-	return (pid);
+	if (access(out, W_OK) < 0)
+	{
+		ft_printf("permission denied: %s\n", out);
+		exit(1);
+	}
 }

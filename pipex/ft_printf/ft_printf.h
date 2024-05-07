@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   process.c                                          :+:      :+:    :+:   */
+/*   libftprintf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 11:47:32 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/05/07 12:43:14 by mpalacin         ###   ########.fr       */
+/*   Created: 2024/01/30 12:48:12 by mpalacin          #+#    #+#             */
+/*   Updated: 2024/05/07 12:52:35 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-int	fork_execute(int in, int out, const char *cmd)
-{
-	pid_t	pid;
+# include <stdarg.h>
+# include <unistd.h>
 
-	pid = fork();
-	if (pid < 0)
-		exit_error("fork error");
-	if (pid == 0)
-	{
-		if (in != 0)
-		{
-			dup2(in,  0);
-			close(in);
-		}
-		if (out != 1)
-		{
-			dup2(out, 1);
-			close(out);
-		}
-		return (execve(cmd, (char * const *)cmd, NULL));
-	}
-	return (pid);
-}
+void	printchar(char c, long long int *printcount);
+void	printdecimalnbr(long long int n, long long int *printcount);
+void	printbasenbr(unsigned long long int n, unsigned int base, char *digits,
+			long long int *printcount);
+int		ft_printf(char const *str, ...);
+
+#endif

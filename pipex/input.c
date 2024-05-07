@@ -6,27 +6,32 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 10:07:27 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/30 12:47:29 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/05/07 12:54:28 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	read_input(const char *in, int out)
+char	*get_input(const char *arg)
 {
-	int	fd;
+	char	*str;
 
+	str = ft_strjoin("< ", arg);
+	if (!str)
+		exit_error("Memory error");
+	return (str);
+}
+
+void	check_input_file(const char *in)
+{
+	if (access(in, F_OK) < 0)
+	{
+		ft_printf("no such file or directory: %s\n", in);
+		exit(1);
+	}
 	if (access(in, R_OK) < 0)
 	{
 		ft_printf("permission denied: %s\n", in);
 		exit(1);
 	}
-	fd = open(in, O_RDONLY);
-	if (fd < 0)
-	{
-		ft_printf("no such file or directory: %s\n", in);
-		exit(1);
-	}
-	read_bytes(
-	close(fd);
 }

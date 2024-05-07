@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:33:38 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/04/30 12:47:36 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/05/07 12:54:31 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,45 @@
 
 int	main(int argc, char **argv)
 {
-	pid_t	pid;
 	int		p[2];
 	int		in;
 	int		i;
 
 	if (argc != 5)
 	{
-		write(1, "Error\n", 6);
+		write(1, "Wrong number of arguments\n", 26);
 		return (1);
 	}
 	i = 1;
-    in = 0;
-	while (i < argc)
+	while (i <= argc)
 	{
 		if (pipe(p) < 0)
-			exit_error ("pipe error");
-		if (fork_execute(in, p[1], argv[i]) < 0)
-			exit_error("execve error");
-		close(p[1]);
-        if (i == 0)
-            close(p[0]);
-        if (in != 0)
-            close(in);
-		in = p[0];
+			exit_error("pipe error");
+		if (i == 1)
+		{
+			check_input_file(argv[i]);
+			if (fork_execute(0, p[1], (const char *)get_input(argv[i])) < 0)
+				exit_error("execve error");
+			close(p[1]);
+			in = p[0];
+		}
+		else if (i == argc)
+		{
+			check_output_file(argv[i]);
+			if (fork_execute(in, p[1], (const char *)get_output(argv[i])) < 0)
+				exit_error("execve error");
+			close(p[1]);
+			close(p[0]);
+			close(in);
+		}
+		else
+		{
+			if (fork_execute(in, p[1], argv[i]) < 0)
+				exit_error("execve error");
+			close(p[1]);
+			in = p[0];
+		}
 		i++;
-	}
-	pid = fork();
-	if (pid < 0)
-		exit_error("fork error");
-	if (pid == 0)
-	{
-		if (in != 0)
-			dup2(p[0], 0);
-		if (execve(argv[i], argv[i], NULL) < 0)
-			exit_error("execve error");
 	}
 	return (0);
 }

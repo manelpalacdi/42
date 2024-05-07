@@ -1,37 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   process.c                                          :+:      :+:    :+:   */
+/*   printchar.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 11:47:32 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/05/07 12:43:14 by mpalacin         ###   ########.fr       */
+/*   Created: 2024/02/05 12:24:33 by mpalacin          #+#    #+#             */
+/*   Updated: 2024/02/05 12:25:49 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "ft_printf.h"
 
-int	fork_execute(int in, int out, const char *cmd)
+void	printchar(char c, long long int *printcount)
 {
-	pid_t	pid;
-
-	pid = fork();
-	if (pid < 0)
-		exit_error("fork error");
-	if (pid == 0)
-	{
-		if (in != 0)
-		{
-			dup2(in,  0);
-			close(in);
-		}
-		if (out != 1)
-		{
-			dup2(out, 1);
-			close(out);
-		}
-		return (execve(cmd, (char * const *)cmd, NULL));
-	}
-	return (pid);
+	write(1, &c, 1);
+	*printcount += 1;
 }

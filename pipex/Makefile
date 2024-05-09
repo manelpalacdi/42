@@ -12,7 +12,7 @@
 
 NAME = pipex
 
-SOURCES = main.c error_utils.c process.c input.c output.c
+SOURCES = main.c error_utils.c process.c input.c output.c path.c
 
 OBJECTS =  $(SOURCES:.c=.o)
 

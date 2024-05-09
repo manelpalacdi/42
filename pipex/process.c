@@ -12,7 +12,24 @@
 
 #include "pipex.h"
 
-int	fork_execute(int in, int out, const char *cmd)
+int execute(const char *cmd, char **env)
+{
+    char    **s_cmd;
+    char    *path;
+
+    s_cmd = ft_split(cmd, ' ');
+    path = get_path(s_cmd[0], env);
+    if (execve(path, s_cmd, env) < 0)
+    {
+        ft_putstr_fd("pipex: command not found: ", 2);
+        ft_putendl_fd(s_cmd[0], 2);
+        free_matrix(s_cmd);
+        exit(1);
+    }
+    return (-1);
+}
+
+int	fork_execute(int in, int out, const char *cmd, char **env)
 {
 	pid_t	pid;
 
@@ -31,7 +48,31 @@ int	fork_execute(int in, int out, const char *cmd)
 			dup2(out, 1);
 			close(out);
 		}
-		return (execve(cmd, (char * const *)cmd, NULL));
+		return (execute(cmd, env));
+	}
+	return (pid);
+}
+
+int	fork_execute_in_out(int in, int out, const char *cmd, char **env)
+{
+	pid_t	pid;
+
+	pid = fork();
+	if (pid < 0)
+		exit_error("fork error");
+	if (pid == 0)
+	{
+		if (in != 0)
+		{
+			dup2(in,  0);
+			close(in);
+		}
+		if (out != 1)
+		{
+			dup2(out, 1);
+			close(out);
+		}
+		return (execute(cmd, env));
 	}
 	return (pid);
 }

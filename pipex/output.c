@@ -12,26 +12,17 @@
 
 #include "pipex.h"
 
-char	*get_output(const char *arg)
-{
-	char	*str;
-
-	str = ft_strjoin(arg, " >");
-	if (!str)
-		exit_error("memory problems");
-	return (str);
-}
-
 void	check_output_file(const char *out)
 {
 	if (access(out, F_OK) < 0)
-	{
-		ft_printf("no such file or directory: %s\n", out);
-		exit(1);
-	}
-	if (access(out, W_OK) < 0)
-	{
-		ft_printf("permission denied: %s\n", out);
-		exit(1);
-	}
-}
+        return ;
+    else
+    {
+        if (access(out, W_OK) < 0)
+        {
+            ft_putstr_fd("pipex: permission denied: ", 2);
+            ft_putstr_fd((char *)out, 2);
+            exit(1);
+        }
+    }
+}   

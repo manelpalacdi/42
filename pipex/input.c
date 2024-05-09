@@ -12,16 +12,6 @@
 
 #include "pipex.h"
 
-char	*get_input(const char *arg)
-{
-	char	*str;
-
-	str = ft_strjoin("< ", arg);
-	if (!str)
-		exit_error("Memory error");
-	return (str);
-}
-
 void	check_input_file(const char *in)
 {
 	if (access(in, F_OK) < 0)

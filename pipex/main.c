@@ -12,42 +12,45 @@
 
 #include "pipex.h"
 
-int	main(int argc, char **argv)
+int	main(int argc, char **argv, char **envp)
 {
 	int		p[2];
 	int		in;
+    int     out;
 	int		i;
 
 	if (argc != 5)
 	{
-		write(1, "Wrong number of arguments\n", 26);
+		write(2, "Wrong number of arguments\n", 26);
 		return (1);
 	}
 	i = 1;
-	while (i <= argc)
+	while (i < argc - 1)
 	{
 		if (pipe(p) < 0)
 			exit_error("pipe error");
 		if (i == 1)
 		{
 			check_input_file(argv[i]);
-			if (fork_execute(0, p[1], (const char *)get_input(argv[i])) < 0)
-				exit_error("execve error");
+            in = open(argv[i], O_RDONLY);
 			close(p[1]);
-			in = p[0];
+            close(p[0]);
 		}
-		else if (i == argc)
+		else if (i == argc - 2)
 		{
-			check_output_file(argv[i]);
-			if (fork_execute(in, p[1], (const char *)get_output(argv[i])) < 0)
-				exit_error("execve error");
-			close(p[1]);
+			check_output_file(argv[i + 1]);
+            out = open(argv[i + 1], O_WRONLY | O_CREAT | O_TRUNC,
+                    S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+			if (fork_execute(in, out, argv[i], envp) < 0)
+			    exit_error("execve error");
 			close(p[0]);
+			close(p[1]);
 			close(in);
+            close(out);
 		}
 		else
 		{
-			if (fork_execute(in, p[1], argv[i]) < 0)
+			if (fork_execute(in, p[1], argv[i], envp) < 0)
 				exit_error("execve error");
 			close(p[1]);
 			in = p[0];

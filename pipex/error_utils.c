@@ -17,7 +17,7 @@ void	exit_error(const char *error)
 	size_t	len;
 
 	len = ft_strlen(error);
-	write(1, error, len);
-	write(1, "\n", 1);
+	write(2, error, len);
+	write(2, "\n", 1);
 	exit(1);
 }

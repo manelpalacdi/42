@@ -19,12 +19,16 @@ int	main(int argc, char **argv, char **envp)
     int     out;
 	int		i;
 
-	if (argc != 5)
-	{
-		write(2, "Wrong number of arguments\n", 26);
-		return (1);
+	if (argc < 5)
+        exit_error("Wrong number of arguments");
+    i = 1;
+    if (ft_strcmp(argv[1], "here_doc") == 0)
+    {
+        if (argc < 6)
+		    exit_error("Wrong number of arguments");
+		i = 3;
+		in = here_doc(argv);
 	}
-	i = 1;
 	while (i < argc - 1)
 	{
 		if (pipe(p) < 0)

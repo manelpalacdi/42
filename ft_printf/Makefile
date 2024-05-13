@@ -6,11 +6,11 @@
 #    By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/02 09:18:30 by mpalacin          #+#    #+#              #
-#    Updated: 2024/02/05 12:55:45 by mpalacin         ###   ########.fr        #
+#    Updated: 2024/05/13 11:44:54 by mpalacin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := libftprintf.a
+NAME := ft_printf.a
 
 CC := cc
 

@@ -6,11 +6,11 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:33:38 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/05/14 11:56:29 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/05/14 12:39:27 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../pipex.h"
 
 static int	handle_input(char **argv, int *p)
 {
@@ -25,13 +25,16 @@ static int	handle_input(char **argv, int *p)
 	return (in);
 }
 
-static int	handle_output(char **argv, int i)
+static int	handle_output(char **argv, int i, int heredoc)
 {
 	int	out;
-
 	check_output_file(argv[i + 1]);
-	out = open(argv[i + 1], O_WRONLY | O_CREAT | O_TRUNC,
-			S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+	if (heredoc)
+		out = open(argv[i + 1], O_WRONLY | O_CREAT | O_APPEND,
+				S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+	else
+		out = open(argv[i + 1], O_WRONLY | O_CREAT | O_TRUNC,
+				S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 	if (out < 0)
 		exit(1);
 	return (out);
@@ -58,11 +61,11 @@ int	main(int argc, char **argv, char **envp)
 	int	p[2];
 	int	in;
 	int	out;
+	int	hd;
 	int	i;
 
-	if (argc != 5)
-		exit_error("Wrong number of arguments");
 	i = 1;
+	hd = check_args(argv, argc, &i, &in);
 	while (i < argc - 1)
 	{
 		if (pipe(p) < 0)
@@ -71,7 +74,7 @@ int	main(int argc, char **argv, char **envp)
 			in = handle_input(argv, p);
 		else if (i == argc - 2)
 		{
-			out = handle_output(argv, i);
+			out = handle_output(argv, i, hd);
 			if (fork_execute(in, out, argv[i], envp) < 0)
 				exit_error("execve error");
 			close_all(p, in, out);

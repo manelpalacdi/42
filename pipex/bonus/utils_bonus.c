@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 11:40:54 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/05/14 12:39:52 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/05/16 12:09:00 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	check_args(char **argv, int argc, int *i, int *in)
 	{
 		if (argc < 6)
 			exit_error("Wrong number of arguments");
-		*i = 3;
+		*i = 2;
 		*in = here_doc(argv);
 		return (1);
 	}
@@ -45,7 +45,7 @@ void	here_doc_put_in(char **av, int *p)
 	}
 }
 
-int here_doc(char **av)
+int	here_doc(char **av)
 {
 	int		p[2];
 	pid_t	pid;
@@ -63,5 +63,5 @@ int here_doc(char **av)
 		dup2(p[0], 0);
 		wait(NULL);
 	}
-    return (p[0]);
+	return (p[0]);
 }

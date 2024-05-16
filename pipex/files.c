@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 12:20:49 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/05/14 12:00:43 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/05/16 11:18:45 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ void	check_input_file(const char *in)
 void	check_output_file(const char *out)
 {
 	if (access(out, F_OK) < 0)
-        return ;
-    else
-    {
-        if (access(out, W_OK) < 0)
-        {
-            ft_putstr_fd("pipex: permission denied: ", 2);
-            ft_putstr_fd((char *)out, 2);
-            exit(1);
-        }
-    }
+		return ;
+	else
+	{
+		if (access(out, W_OK) < 0)
+		{
+			ft_putstr_fd("pipex: permission denied: ", 2);
+			ft_putstr_fd((char *)out, 2);
+			exit(1);
+		}
+	}
 }

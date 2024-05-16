@@ -6,32 +6,32 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 11:47:32 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/05/14 12:39:43 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/05/16 11:26:17 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "pipex.h"
 
-int execute(const char *cmd, char **env)
+int	execute(const char *cmd, char **env)
 {
-    char    **s_cmd;
-    char    *path;
+	char	**s_cmd;
+	char	*path;
 
 	if (!cmd || cmd[0] == '\0')
-    {
-        ft_putendl_fd("pipex: enter non void command", 2);
-        exit(1);
-    }
-    s_cmd = ft_split(cmd, ' ');
-    path = get_path(s_cmd[0], env);
-    if (execve(path, s_cmd, env) < 0)
-    {
-        ft_putstr_fd("pipex: command not found: ", 2);
-        ft_putendl_fd(s_cmd[0], 2);
-        free_matrix(s_cmd);
-        exit(1);
-    }
-    return (-1);
+	{
+		ft_putendl_fd("pipex: enter non void command", 2);
+		exit(1);
+	}
+	s_cmd = ft_split(cmd, ' ');
+	path = get_path(s_cmd[0], env);
+	if (execve(path, s_cmd, env) < 0)
+	{
+		ft_putstr_fd("pipex: command not found: ", 2);
+		ft_putendl_fd(s_cmd[0], 2);
+		free_matrix(s_cmd);
+		exit(1);
+	}
+	return (-1);
 }
 
 int	fork_execute(int in, int out, const char *cmd, char **env)
@@ -45,7 +45,7 @@ int	fork_execute(int in, int out, const char *cmd, char **env)
 	{
 		if (in != 0)
 		{
-			dup2(in,  0);
+			dup2(in, 0);
 			close(in);
 		}
 		if (out != 1)
@@ -69,7 +69,7 @@ int	fork_execute_in_out(int in, int out, const char *cmd, char **env)
 	{
 		if (in != 0)
 		{
-			dup2(in,  0);
+			dup2(in, 0);
 			close(in);
 		}
 		if (out != 1)

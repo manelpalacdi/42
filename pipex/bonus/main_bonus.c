@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:33:38 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/05/14 12:39:27 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/05/16 12:09:11 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static int	handle_input(char **argv, int *p)
 static int	handle_output(char **argv, int i, int heredoc)
 {
 	int	out;
+
 	check_output_file(argv[i + 1]);
 	if (heredoc)
 		out = open(argv[i + 1], O_WRONLY | O_CREAT | O_APPEND,
@@ -64,9 +65,9 @@ int	main(int argc, char **argv, char **envp)
 	int	hd;
 	int	i;
 
-	i = 1;
+	i = 0;
 	hd = check_args(argv, argc, &i, &in);
-	while (i < argc - 1)
+	while (++i < argc - 1)
 	{
 		if (pipe(p) < 0)
 			exit_error("pipe error");
@@ -81,7 +82,6 @@ int	main(int argc, char **argv, char **envp)
 		}
 		else
 			in = handle_command(argv[i], envp, p, in);
-		i++;
 	}
 	return (0);
 }

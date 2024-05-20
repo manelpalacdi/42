@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:33:38 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/05/16 12:05:40 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/05/20 10:52:28 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	handle_output(char *cmd)
 static int	handle_command(char *cmd, char **envp, int *p, int in)
 {
 	if (fork_execute(in, p[1], cmd, envp) < 0)
-		exit_error("execve error");
+		exit_error("pipex: execve error");
 	close(p[1]);
 	return (p[0]);
 }
@@ -61,19 +61,19 @@ int	main(int argc, char **argv, char **envp)
 	int	i;
 
 	if (argc != 5)
-		exit_error("Wrong number of arguments");
+		exit_error("pipex: wrong number of arguments");
 	i = 0;
 	while (++i < argc - 1)
 	{
 		if (pipe(p) < 0)
-			exit_error("pipe error");
+			exit_error("pipex: pipe error");
 		if (i == 1)
 			in = handle_input(argv, p);
 		else if (i == argc - 2)
 		{
 			out = handle_output(argv[i + 1]);
 			if (fork_execute(in, out, argv[i], envp) < 0)
-				exit_error("execve error");
+				exit_error("pipex: execve error");
 			close_all(p, in, out);
 		}
 		else

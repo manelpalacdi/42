@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 12:20:49 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/05/16 11:18:45 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/05/20 10:52:42 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ void	check_input_file(const char *in)
 {
 	if (access(in, F_OK) < 0)
 	{
-		ft_putstr_fd("no such file or directory: ", 2);
+		ft_putstr_fd("pipex: no such file or directory: ", 2);
 		ft_putendl_fd((char *)in, 2);
 		exit(1);
 	}
 	if (access(in, R_OK) < 0)
 	{
-		ft_putstr_fd("permission denied: ", 2);
+		ft_putstr_fd("pipex: permission denied: ", 2);
 		ft_putendl_fd((char *)in, 2);
 		exit(1);
 	}

@@ -6,11 +6,11 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 11:47:32 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/05/16 11:26:17 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/05/20 10:47:14 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../pipex.h"
 
 int	execute(const char *cmd, char **env)
 {

@@ -6,11 +6,11 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:19:49 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/05/16 12:09:45 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/05/20 10:48:21 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../pipex.h"
 
 void	free_matrix(char **m)
 {

@@ -6,11 +6,11 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 12:20:49 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/05/16 11:18:45 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/05/20 10:47:27 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../pipex.h"
 
 void	check_input_file(const char *in)
 {

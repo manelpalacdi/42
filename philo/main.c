@@ -14,15 +14,12 @@
 
 int	main(int argc, char **argv)
 {
-	t_philo	*p;
 	t_args	*args;
 	
-	if (check_args(argc, argv, args) < 0)
+	if (init_args(argc, argv, args) < 0)
 		return (1);
-	nphilo = ft_atoi(nphilo);
-	if (init_philo(p, args->nphilo) < 0)
+	if (init_philo(args->p, args->nphilo) < 0)
 		return (1);
-	if (init_thread(p, args) < 0)
+	if (init_thread(args) < 0)
 		return (1);
-
 }

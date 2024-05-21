@@ -12,24 +12,54 @@
 
 #include "philo.h"
 
-int	init_thread(t_philo *p, char **argv)
+static int  check_args(int argc, char **argv)
 {
-	int	i;
+        int     i;
+        int     j;
 
-	i = 0;
-	while (i < nphilo)
-	{
-		if (pthread_create(&(p[i]->id), NULL, thread_start, argv) < 0)
-		{
-			write(2, "Failed to create thread\n", 24);
-			return (-1);
-		}
-		if (pthread_detach(p[i]->id) < 0)
-		{
-			write(2, "Failed to detach thread\n", 24);
-			return (-1);
-		}
-	}
+        i = 1;
+        j = 0;
+        if (argc != 5 && argc != 6)
+        {
+                write(2, "Wrong number of arguments\n", 26);
+                return (-1);
+        }
+        while (argv[i])
+        {
+                while (argv[i][j])
+                {
+                        if (!ft_isdigit(argv[i][j]))
+                        {
+                                write(2, "Wrong format\n", 13);
+                                return (-1);
+                        }
+                        j++;
+                }
+                j = 0;
+                i++;
+        }
+    return (0);
+}
+
+int     init_args(int argc, char **argv, t_args *args)
+{
+    if (check_args(argc, argv) < 0)
+        return (-1);
+        args->nphilo = ft_atoi(argv[1]);
+    args->forks = malloc(nphilo + 1);
+    if (!(args->forks))
+    {
+        write(2, "Failed memory initialization\n", 29);
+        return (-1);
+    }
+    memset(args->forks, '0', nphilo);
+    args->forks[nphilo] = '\0';
+        args->die_t = ft_atoi(argv[2]);
+        args->eat_t = ft_atoi(argv[3]);
+        args->sleep_t = ft_atoi(argv[4]);
+    if (argc == 6)
+            args->eat_max = ft_atoi(argv[5]);
+    return (0);
 }
 
 int	init_philo(t_philo *p, char *nphilo)
@@ -50,8 +80,26 @@ int	init_philo(t_philo *p, char *nphilo)
 		p[i]->index = i;
 		p[i]->status = 0;
 		p[i]->ate_time = 0;
-		p[i]->r_fork = 0;
-		p[i]->l_fork = 0;
+		p[i]->r_fork = '0';
+		p[i]->l_fork = '0';
 	}
 	return (0);
+}
+
+int	init_thread(t_args *args)
+{
+	int	i;
+    t_pargs *pargs;
+
+    parg->pargs = args
+	i = 0;
+	while (i < nphilo)
+	{
+        pargs->p = p[i];
+		if (pthread_create(&(p[i]->id), NULL, thread_start, pargs) < 0)
+		{
+			write(2, "Failed to create thread\n", 24);
+			return (-1);
+		}
+	}
 }

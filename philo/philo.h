@@ -22,18 +22,24 @@ typedef struct s_philo
 	int				index;
 	int				status;
 	unsigned int	ate_time;
-	int				r_fork;
-	int				l_fork;
+	char			r_fork;
+	char			l_fork;
 	pthread_t		*id;
 }	t_philo;
 
 typedef struct s_args
 {
-	int	nphilo;
-	int	die_t;
-	int	eat_t;
-	int	sleep_t;
-	int	eat_max;
+	int	    nphilo;
+    t_philo *p;
+    char    *forks;
+	int     die_t;
+	int     eat_t;
+	int     sleep_t;
+	int     eat_max;
 }	t_args;
 
-#endif
+typedef struct s_pargs
+{
+    t_philo p;
+    t_args  args;
+}   t_pargs;

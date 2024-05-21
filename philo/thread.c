@@ -12,6 +12,16 @@
 
 #include "philo.h"
 
-void	thread_start()
+void    take_forks(t_args *args)
 {
+    take_l_fork();
+    take_r_fork();
+    start_eat
+}
+
+void    thread_start(t_pargs *pargs)
+{
+    eat();
+    sleep();
+    think();
 }

@@ -6,13 +6,13 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 12:00:19 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/05/22 13:01:08 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/05/28 11:57:09 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	check_death(t_pargs *pargs)
+int	print_status(int i, char *s)
 {
 	struct timeval	tv;
 	unsigned long	time;
@@ -24,49 +24,82 @@ int	check_death(t_pargs *pargs)
 		write(2, "timeout error\n", 14);
 		return (-1);
 	}
-	if (time - pargs->p.ate_time > pargs->args.die_t)
+	ft_putnbr_fd((int)time, 1);
+	write(1, " ", 1);
+	ft_putnbr_fd(i, 1);
+	write(1, " ", 1);
+	ft_putstr_fd(s, 1);
+	return (0);
+}
+
+static int	check_death(t_pargs *pargs)
+{
+	struct timeval	tv;
+	unsigned long	time;
+
+	gettimeofday(&tv, NULL);
+	time = 1000000 * tv.tv_sec + tv.tv_usec;
+	if (time > 2147483647)
+	{
+		write(2, "timeout error\n", 14);
+		return (-1);
+	}
+	if (time - pargs->p->ate_time > pargs->args->die_t)
 	{
 		ft_putnbr_fd((int)time, 1);
 		write(1, " ", 1);
-		ft_putnbr_fd(pargs->p.index + 1, 1);
+		ft_putnbr_fd(pargs->p->index + 1, 1);
 		write(1, " died\n", 6);
 		return (-1);
 	}
 	return (0);
 }
 
-void	update(t_args *args)
+void	*update(void *ref)
 {
 	t_pargs	*pargs;
-	
-	&pargs->args = args;
-	while (i < args->nphilo)
+	int		i;
+
+	i = 0;
+	pargs = NULL;
+	pargs->args = ref;
+	while (i < pargs->args->nphilo)
 	{
-		&pargs->p = &args->p[i];
+		pargs->p = &(pargs->args->p[i]);
 		if (check_death(pargs))
-			break();
+			break ;
+		if (pargs->p->ate_count >= pargs->args->eat_max)
+			pargs->args->end = 1;
 		i++;
-		if (i == args->nphilo)
+		if (i == pargs->args->nphilo)
 			i = 0;
 	}
-	args->end = 1;
+	pargs->args->end = 1;
+	return (NULL);
 }
 
-void	thread_start(t_pargs *pargs)
+void	*thread_start(void *ref)
 {
-	while (pargs->p->ate_count < pargs->args->eat_max ||
-			!(pargs->args->end))
+	t_pargs	*pargs;
+
+	pargs = ref;
+	if (pargs->args->nphilo == 1)
 	{
-		if (pargs->args->nphilo == 1)
-			usleep(pargs->args->die_t);
-		else
-		{
-			if (eat(pargs) < 0)
-				return ;
-			if (sleep(pargs) < 0)
-				return ;
-			if (think(pargs) < 0)
-				return ;
-		}
+		if (usleep(pargs->args->die_t) < 0)
+			return (NULL);
 	}
+	while (!(pargs->args->end))
+	{
+		if (eat(pargs) < 0)
+			return (NULL);
+		if (pargs->args->end)
+			break ;
+		if (psleep(pargs) < 0)
+			return (NULL);
+		if (pargs->args->end)
+			break ;
+		if (think(pargs) < 0)
+			return (NULL);
+	}
+	return (NULL);
 }

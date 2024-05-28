@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:17:44 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/05/22 13:01:10 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/05/28 11:57:58 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 # define PHILO_H
 
 # include <pthread.h>
-# include <time.h>
+# include <sys/time.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 typedef struct s_philo
 {
 	int				index;
-	int				status;
 	unsigned long	ate_time;
 	int				ate_count;
 	pthread_t		*id;
@@ -32,7 +32,7 @@ typedef struct s_args
 	int				nphilo;
 	t_philo			*p;
 	pthread_mutex_t	*forks;
-	int				die_t;
+	unsigned long	die_t;
 	int				eat_t;
 	int				sleep_t;
 	int				eat_max;
@@ -46,4 +46,17 @@ typedef struct s_pargs
 	t_args	*args;
 }	t_pargs;
 
+int		init_args(int argc, char **argv, t_args *args);
+int		init_philo(t_philo *p, char *nphilo);
+int		init_thread(t_args *args);
+void	*thread_start(void *ref);
+void	*update(void *ref);
+int		print_status(int i, char *s);
+int		eat(t_pargs *pargs);
+int		psleep(t_pargs *pargs);
+int		think(t_pargs *pargs);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
+int		ft_isdigit(int c);
+int		ft_atoi(const char *str);
 #endif

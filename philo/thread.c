@@ -6,7 +6,7 @@
 /*   By: mpalacin <mpalacin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 12:00:19 by mpalacin          #+#    #+#             */
-/*   Updated: 2024/05/28 11:57:09 by mpalacin         ###   ########.fr       */
+/*   Updated: 2024/05/29 10:52:49 by mpalacin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,7 @@ void	*update(void *ref)
 	int		i;
 
 	i = 0;
-	pargs = NULL;
-	pargs->args = ref;
+	pargs = ref;
 	while (i < pargs->args->nphilo)
 	{
 		pargs->p = &(pargs->args->p[i]);
@@ -75,6 +74,7 @@ void	*update(void *ref)
 			i = 0;
 	}
 	pargs->args->end = 1;
+	write(1, "a", 1);
 	return (NULL);
 }
 
